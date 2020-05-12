@@ -13,6 +13,8 @@
 		1DB2D6B924630C1F00ECBB67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB2D6B724630C1F00ECBB67 /* Main.storyboard */; };
 		1DB2D6BB24630C2000ECBB67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DB2D6BA24630C2000ECBB67 /* Assets.xcassets */; };
 		1DB2D6BE24630C2000ECBB67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB2D6BC24630C2000ECBB67 /* LaunchScreen.storyboard */; };
+		1DB2D6C624630C4200ECBB67 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB2D6C524630C4200ECBB67 /* Stopwatch.swift */; };
+		1DF1B080246454AE00CA20AB /* Pay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1B07F246454AE00CA20AB /* Pay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		1DB2D6BA24630C2000ECBB67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DB2D6BD24630C2000ECBB67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DB2D6BF24630C2000ECBB67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DB2D6C524630C4200ECBB67 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
+		1DF1B07F246454AE00CA20AB /* Pay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +63,9 @@
 				1DB2D6B124630C1F00ECBB67 /* AppDelegate.swift */,
 				1DB2D6B324630C1F00ECBB67 /* SceneDelegate.swift */,
 				1DB2D6B524630C1F00ECBB67 /* ViewController.swift */,
+				1DB2D6C524630C4200ECBB67 /* Stopwatch.swift */,
 				1DB2D6B724630C1F00ECBB67 /* Main.storyboard */,
+				1DF1B07F246454AE00CA20AB /* Pay.swift */,
 				1DB2D6BA24630C2000ECBB67 /* Assets.xcassets */,
 				1DB2D6BC24630C2000ECBB67 /* LaunchScreen.storyboard */,
 				1DB2D6BF24630C2000ECBB67 /* Info.plist */,
@@ -138,9 +144,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DF1B080246454AE00CA20AB /* Pay.swift in Sources */,
 				1DB2D6B624630C1F00ECBB67 /* ViewController.swift in Sources */,
 				1DB2D6B224630C1F00ECBB67 /* AppDelegate.swift in Sources */,
 				1DB2D6B424630C1F00ECBB67 /* SceneDelegate.swift in Sources */,
+				1DB2D6C624630C4200ECBB67 /* Stopwatch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
