@@ -10,34 +10,61 @@ import UIKit
 
 class ViewController: UIViewController {
     
-
-    @IBOutlet var startPause: UIButton! {
-        didSet {
-         /*   startPause.setBackgroundColor(.green, for: .normal)
-            startPause.setBackgroundColor(.yellow, for: .selected)*/
-        }
-    }
+    /***  IBOutlet  ***/
+    
+    // TextField
+    @IBOutlet var payTextField: UITextField!
+  
+    // Label
     @IBOutlet var time: UILabel!
     @IBOutlet var pay: UILabel!
     
-    private lazy var stopwatch = Stopwatch(timeUpdated: { [weak self] timeInterval in
-           guard let strongSelf = self else { return }
-           strongSelf.time.text = strongSelf.timeString(from: timeInterval)
-       })
-       
-       deinit {
-           stopwatch.stop()
+    // Button
+    @IBOutlet var startButton: UIButton!
+    @IBOutlet var stopButton: UIButton!
+    
+    @IBOutlet var startPause: UIButton! {
+           didSet {
+            /*   startPause.setBackgroundColor(.green, for: .normal)
+               startPause.setBackgroundColor(.yellow, for: .selected)*/
+           }
        }
        
+    /***  IBAction  ***/
+
     @IBAction func toggle(_ sender: Any) {
+        
         //sendler.isSelected =!sendler.isSelected
         stopwatch.toggle()
+        payTextField.isHidden = true
+        time.isHidden = false
+        pay.isHidden = false
+        stopButton.isHidden = false
     }
     
     @IBAction func reset(_ sender: Any) {
+       
         stopwatch.stop()
-               startPause.isSelected = false
+        startPause.isSelected = false
+        payTextField.isHidden = false
+
     }
+    
+    /***  @IBAction func payText(_ sender: Any) {
+        let name =  (pay.text)!
+    } **/
+    
+    
+    private lazy var stopwatch = Stopwatch(timeUpdated: { [weak self] timeInterval in
+        guard let strongSelf = self else { return }
+        strongSelf.time.text = strongSelf.timeString(from: timeInterval)
+    })
+    
+    deinit {
+        stopwatch.stop()
+    }
+    
+    
     
     private func timeString(from timeInterval: TimeInterval) -> String {
             
@@ -53,9 +80,10 @@ class ViewController: UIViewController {
     
     func payAmountCount(seconds:Double){
         
-        let scorePay = 100.0
-        let payScore = scorePay / 3600 * seconds
-        let payString = String(String(format:"%.2f", payScore))
+        let textFieldTxt = payTextField.text!
+        let textFieldDouble = NSString(string: textFieldTxt).doubleValue // downcast as double Textfield value
+        let payScore = textFieldDouble / 3600 * seconds
+        let payString = String(String(format:"%.2f", payScore)) // convert Double to string for label
         pay.text = payString
         pay.lineBreakMode = .byTruncatingTail
         //print(payScore)
@@ -64,6 +92,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        time.isHidden = true
+        pay.isHidden = true
+        stopButton.isHidden = true
+        
         
         // Do any additional setup after loading the view.
     }
