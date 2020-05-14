@@ -81,7 +81,7 @@ class ViewController: UIViewController {
             return String(format: "%.2d:%.2d:%.2d", hours, minutes, second)
         }
     
-    func payAmountCount(seconds:Double){
+          func payAmountCount(seconds:Double){
         
         let textFieldTxt = payTextField.text!
         let textFieldDouble = NSString(string: textFieldTxt).doubleValue // downcast as double Textfield value
