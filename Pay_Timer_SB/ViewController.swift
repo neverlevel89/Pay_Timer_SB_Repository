@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // Global variable
+    var hideShowUI:Bool = true
+          
+
     /***  IBOutlet  ***/
     
     // TextField
@@ -30,8 +34,6 @@ class ViewController: UIViewController {
            }
        }
     
-    var hideShowUI:Bool = true
-       
     /***  IBAction  ***/
 
     @IBAction func toggle(_ sender: Any) {
@@ -41,6 +43,16 @@ class ViewController: UIViewController {
         payTextField.isHidden = true
         hideShowUI = false
         setupUI(show: hideShowUI)
+        
+        if stopwatch.isPaused == true {
+            
+            payTextField.isHidden = false
+            //timeString(from: <#T##TimeInterval#>)
+            
+
+        }
+        
+        
 
       /*  time.isHidden = false
         pay.isHidden = false
@@ -67,6 +79,7 @@ class ViewController: UIViewController {
     
     deinit {
         stopwatch.stop()
+        
     }
     
     private func timeString(from timeInterval: TimeInterval) -> String {
@@ -81,25 +94,25 @@ class ViewController: UIViewController {
             return String(format: "%.2d:%.2d:%.2d", hours, minutes, second)
         }
     
-          func payAmountCount(seconds:Double){
+            func payAmountCount(seconds:Double){
         
-        let textFieldTxt = payTextField.text!
-        let textFieldDouble = NSString(string: textFieldTxt).doubleValue // downcast as double Textfield value
-        let payScore = textFieldDouble / 3600 * seconds // pay calculous
-        let payString = String(String(format:"%.2f", payScore)) // convert Double to string for label
-        pay.text = payString
-        pay.lineBreakMode = .byTruncatingTail
-        //print(payScore)
+            let textFieldTxt = payTextField.text!
+            let textFieldDouble = NSString(string: textFieldTxt).doubleValue // downcast as double Textfield value
+            let payScore = textFieldDouble / 3600 * seconds // pay calculous
+            let payString = String(String(format:"%.2f", payScore)) // convert Double to string for label
+            pay.text = payString
+            pay.lineBreakMode = .byTruncatingTail
+            //print(payScore)
 
-    }
+        }
     
-    func setupUI(show:Bool) {
+            func setupUI(show:Bool) {
         
-        time.isHidden = show
-        pay.isHidden = show
-        stopButton.isHidden = show
+            time.isHidden = show
+            pay.isHidden = show
+            stopButton.isHidden = show
         
-    }
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
