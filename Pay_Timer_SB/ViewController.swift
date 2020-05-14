@@ -29,6 +29,8 @@ class ViewController: UIViewController {
                startPause.setBackgroundColor(.yellow, for: .selected)*/
            }
        }
+    
+    var hideShowUI:Bool = true
        
     /***  IBAction  ***/
 
@@ -37,9 +39,12 @@ class ViewController: UIViewController {
         //sendler.isSelected =!sendler.isSelected
         stopwatch.toggle()
         payTextField.isHidden = true
-        time.isHidden = false
+        hideShowUI = false
+        setupUI(show: hideShowUI)
+
+      /*  time.isHidden = false
         pay.isHidden = false
-        stopButton.isHidden = false
+        stopButton.isHidden = false*/
     }
     
     @IBAction func reset(_ sender: Any) {
@@ -64,8 +69,6 @@ class ViewController: UIViewController {
         stopwatch.stop()
     }
     
-    
-    
     private func timeString(from timeInterval: TimeInterval) -> String {
             
             let secondDouble = Double(timeInterval.truncatingRemainder(dividingBy: 3600)) // variable amount seconds payed
@@ -82,7 +85,7 @@ class ViewController: UIViewController {
         
         let textFieldTxt = payTextField.text!
         let textFieldDouble = NSString(string: textFieldTxt).doubleValue // downcast as double Textfield value
-        let payScore = textFieldDouble / 3600 * seconds
+        let payScore = textFieldDouble / 3600 * seconds // pay calculous
         let payString = String(String(format:"%.2f", payScore)) // convert Double to string for label
         pay.text = payString
         pay.lineBreakMode = .byTruncatingTail
@@ -90,17 +93,26 @@ class ViewController: UIViewController {
 
     }
     
+    func setupUI(show:Bool) {
+        
+        time.isHidden = show
+        pay.isHidden = show
+        stopButton.isHidden = show
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        time.isHidden = true
+        setupUI(show: hideShowUI)
+       /* time.isHidden = true
         pay.isHidden = true
-        stopButton.isHidden = true
+        stopButton.isHidden = true*/
         
         
         // Do any additional setup after loading the view.
     }
-    }
+}
     
 
 
