@@ -47,11 +47,28 @@ class ViewController: UIViewController {
         if stopwatch.isPaused == true {
             
             payTextField.isHidden = false
+            //payTextField.isSelected = true
+            //payTextField.text = ""
+           // payTextField.text = pay.text
+           // let payLabelTxt = payString
+           //pay.text = payLabelTxt
+            //payTextField.text = payString
+
+            let textFieldTxt = payString
+            print(payString,"\"payString")
+
+           // pay.text = payString
+
+            let textFieldDouble = NSString(string: textFieldTxt).doubleValue // downcast as double Textfield value
+
+            payAmountCount(seconds: textFieldDouble)
+            pay.text = textFieldTxt
+
             //timeString(from: <#T##TimeInterval#>)
             
 
         }
-        
+
         
 
       /*  time.isHidden = false
@@ -94,12 +111,13 @@ class ViewController: UIViewController {
             return String(format: "%.2d:%.2d:%.2d", hours, minutes, second)
         }
     
+    var payString:String = ""
             func payAmountCount(seconds:Double){
         
             let textFieldTxt = payTextField.text!
             let textFieldDouble = NSString(string: textFieldTxt).doubleValue // downcast as double Textfield value
             let payScore = textFieldDouble / 3600 * seconds // pay calculous
-            let payString = String(String(format:"%.2f", payScore)) // convert Double to string for label
+            payString = String(String(format:"%.2f", payScore)) // convert Double to string for label
             pay.text = payString
             pay.lineBreakMode = .byTruncatingTail
             //print(payScore)
@@ -108,11 +126,11 @@ class ViewController: UIViewController {
     
             func setupUI(show:Bool) {
         
-            time.isHidden = show
-            pay.isHidden = show
-            stopButton.isHidden = show
+                 time.isHidden = show
+                 pay.isHidden = show
+                 stopButton.isHidden = show
         
-        }
+            }
     
     override func viewDidLoad() {
         super.viewDidLoad()
