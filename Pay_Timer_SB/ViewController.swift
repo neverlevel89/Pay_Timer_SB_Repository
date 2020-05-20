@@ -10,20 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    // Global variable
+    // MARK: Global variable
     var hideShowUI:Bool = true
-          
-
+    var payString:String = ""
+    
+    // MARK: Global letting
+    let payOjc = Pay() // Pay Object
+    
     /***  IBOutlet  ***/
     
-    // TextField
+    // MARK: TextField
     @IBOutlet var payTextField: UITextField!
   
-    // Label
+    // MARK: Label
     @IBOutlet var time: UILabel!
     @IBOutlet var pay: UILabel!
     
-    // Button
+    // MARK: Button
     @IBOutlet var startButton: UIButton!
     @IBOutlet var stopButton: UIButton!
     
@@ -47,33 +50,20 @@ class ViewController: UIViewController {
         if stopwatch.isPaused == true {
             
             payTextField.isHidden = false
-            //payTextField.isSelected = true
-            //payTextField.text = ""
-           // payTextField.text = pay.text
-           // let payLabelTxt = payString
-           //pay.text = payLabelTxt
-            //payTextField.text = payString
-
+            payTextField.isSelected = true
             let textFieldTxt = payString
-            print(payString,"\"payString")
-
-           // pay.text = payString
-
+            //print(payString,"\"payString")
             let textFieldDouble = NSString(string: textFieldTxt).doubleValue // downcast as double Textfield value
-
-            payAmountCount(seconds: textFieldDouble)
+            payAmountCount(seconds: textFieldDouble) // pay calculus method
             pay.text = textFieldTxt
-
-            //timeString(from: <#T##TimeInterval#>)
-            
+            //payTextField.text = ""
+            // payTextField.text = pay.text
+            // let payLabelTxt = payString
+            //pay.text = payLabelTxt
+             //payTextField.text = payString
 
         }
 
-        
-
-      /*  time.isHidden = false
-        pay.isHidden = false
-        stopButton.isHidden = false*/
     }
     
     @IBAction func reset(_ sender: Any) {
@@ -104,25 +94,37 @@ class ViewController: UIViewController {
             let secondDouble = Double(timeInterval.truncatingRemainder(dividingBy: 3600)) // variable amount seconds payed
             let minutes = Int(timeInterval.truncatingRemainder(dividingBy: 60 * 60) / 60)
             let hours = Int(timeInterval / 3600)
-        
             payAmountCount(seconds: secondDouble) // pay calculus method
+            let second = Int(timeInterval.truncatingRemainder(dividingBy: 60)) // downcast Double to Int
         
-            let second = Int(timeInterval.truncatingRemainder(dividingBy: 60)) // Downcast Double to Int
+       /** switch minutes {
+        case 1:
+            pay.text = "fuck"
+            case 2:
+            pay.text = "CISO"
+
+        default:
+            break
+        }**/
             return String(format: "%.2d:%.2d:%.2d", hours, minutes, second)
         }
     
-    var payString:String = ""
+        // MARK: Pay realtime method
+
             func payAmountCount(seconds:Double){
         
             let textFieldTxt = payTextField.text!
             let textFieldDouble = NSString(string: textFieldTxt).doubleValue // downcast as double Textfield value
-            let payScore = textFieldDouble / 3600 * seconds // pay calculous
+            let payScore = payOjc.payCalculous(time:textFieldDouble, seconds:seconds)
+           // let payScore = textFieldDouble / 3600 * seconds // pay calculous
             payString = String(String(format:"%.2f", payScore)) // convert Double to string for label
             pay.text = payString
             pay.lineBreakMode = .byTruncatingTail
             //print(payScore)
 
         }
+    
+         /*** UI elements management display method  ***/
     
             func setupUI(show:Bool) {
         
@@ -136,11 +138,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI(show: hideShowUI)
-       /* time.isHidden = true
-        pay.isHidden = true
-        stopButton.isHidden = true*/
-        
-        
+       
         // Do any additional setup after loading the view.
     }
 }

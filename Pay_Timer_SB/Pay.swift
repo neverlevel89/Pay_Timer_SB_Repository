@@ -8,5 +8,25 @@
 
 import Foundation
 
+class Pay {
+    
+    // MARK:  Method calculus realtime pay
 
-//Premier diMario
+    func payCalculous(time:Double, seconds:Double) -> Double {
+       let payRealTime = time / 3600 * seconds
+       return payRealTime
+    }
+    
+    func achivments(time:Int){
+        
+    switch time {
+        case 1:
+            ViewController().pay.text = "fuck"
+            case 2:
+            ViewController().pay.text = "CISO"
+
+        default:
+            break
+        }
+    }
+}
