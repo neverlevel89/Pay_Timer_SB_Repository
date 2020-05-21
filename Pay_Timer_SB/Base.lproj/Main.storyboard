@@ -54,11 +54,19 @@
                                     <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uR8-Rb-PYh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Checkpoint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5C6-Eh-Gk8">
+                                <rect key="frame" x="92" y="611" width="231" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="47"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="checkPointLabel" destination="5C6-Eh-Gk8" id="SPl-x6-nKJ"/>
                         <outlet property="pay" destination="IAr-6T-9cl" id="Lv6-Uv-CyI"/>
                         <outlet property="payTextField" destination="8O7-pn-7va" id="HMq-6P-BPN"/>
                         <outlet property="startButton" destination="cVl-iz-4W6" id="7Xk-wC-yuc"/>

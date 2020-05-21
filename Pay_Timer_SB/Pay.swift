@@ -17,16 +17,17 @@ class Pay {
        return payRealTime
     }
     
-    func achivments(time:Int){
+    func checkPointTimer(time:Int)  {
         
     switch time {
         case 1:
-            ViewController().pay.text = "fuck"
+            ViewController().checkPointLabel.text = "fuck"
             case 2:
-            ViewController().pay.text = "CISO"
+            ViewController().checkPointLabel.text = "CISO"
 
         default:
             break
         }
+        
     }
 }

@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var payString:String = ""
     
     // MARK: Global letting
-    let payOjc = Pay() // Pay Object
+    let payObjc = Pay() // Pay Object
     
     /***  IBOutlet  ***/
     
@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     // MARK: Label
     @IBOutlet var time: UILabel!
     @IBOutlet var pay: UILabel!
+    @IBOutlet var checkPointLabel: UILabel!
     
     // MARK: Button
     @IBOutlet var startButton: UIButton!
@@ -96,6 +97,7 @@ class ViewController: UIViewController {
             let hours = Int(timeInterval / 3600)
             payAmountCount(seconds: secondDouble) // pay calculus method
             let second = Int(timeInterval.truncatingRemainder(dividingBy: 60)) // downcast Double to Int
+            checkPointTimer(time: minutes)
         
        /** switch minutes {
         case 1:
@@ -115,7 +117,7 @@ class ViewController: UIViewController {
         
             let textFieldTxt = payTextField.text!
             let textFieldDouble = NSString(string: textFieldTxt).doubleValue // downcast as double Textfield value
-            let payScore = payOjc.payCalculous(time:textFieldDouble, seconds:seconds)
+            let payScore = payObjc.payCalculous(time:textFieldDouble, seconds:seconds)
            // let payScore = textFieldDouble / 3600 * seconds // pay calculous
             payString = String(String(format:"%.2f", payScore)) // convert Double to string for label
             pay.text = payString
@@ -133,6 +135,18 @@ class ViewController: UIViewController {
                  stopButton.isHidden = show
         
             }
+    
+            func checkPointTimer(time: Int) {
+        switch time {
+        case 1:
+            checkPointLabel.text = "fuck"
+            case 2:
+            checkPointLabel.text = "CISO"
+
+        default:
+            break
+           }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
