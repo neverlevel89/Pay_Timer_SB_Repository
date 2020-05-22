@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     var payString:String = ""
     
     // MARK: Global letting
-    let payObjc = Pay() // Pay Object
+    let payObjc = Pay() // Pay object
+    let gradientObjc = Gradient() // Gradient object
     
     /***  IBOutlet  ***/
     
@@ -99,15 +100,6 @@ class ViewController: UIViewController {
             let second = Int(timeInterval.truncatingRemainder(dividingBy: 60)) // downcast Double to Int
             checkPointTimer(time: minutes)
         
-       /** switch minutes {
-        case 1:
-            pay.text = "fuck"
-            case 2:
-            pay.text = "CISO"
-
-        default:
-            break
-        }**/
             return String(format: "%.2d:%.2d:%.2d", hours, minutes, second)
         }
     
@@ -137,21 +129,25 @@ class ViewController: UIViewController {
             }
     
             func checkPointTimer(time: Int) {
-        switch time {
-        case 1:
-            checkPointLabel.text = "fuck"
-            case 2:
-            checkPointLabel.text = "CISO"
-
-        default:
-            break
-           }
-    }
+              
+            switch time {
+                 case 1:
+                    checkPointLabel.text = "fuck"
+                 case 2:
+                    checkPointLabel.text = "CISO"
+                 default:
+                    break
+                    
+                }
+             }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI(show: hideShowUI)
+        gradientObjc.setupGradient(view: view)
+        
+        
        
         // Do any additional setup after loading the view.
     }
