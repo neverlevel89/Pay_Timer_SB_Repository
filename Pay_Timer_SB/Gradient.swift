@@ -9,45 +9,46 @@
 import Foundation
 import UIKit
 
-struct GradientSetup {
+struct GradientTimer {
     
-    var gradientRandom = UIColor(
-    red:   CGFloat(drand48()),
-    green: CGFloat(drand48()),
-    blue:  CGFloat(drand48()),
-    alpha: 1.0
-    )
+    let timer:Timer
     
-   
 }
 class Gradient {
     
     func setupGradient(view:UIView){
         
+        //let timer = GradientTimer(timer: Timer)
+        let gradientFirstcolor = getRandomColor()
+        let gradientSecondcolor = getRandomColor()
         let gradientLayer = CAGradientLayer()
         gradientLayer.zPosition = -1
         gradientLayer.frame = view.bounds
-        gradientLayer.colors = [UIColor.red.cgColor, UIColor.blue.cgColor]
+        gradientLayer.colors = [gradientFirstcolor.cgColor, gradientSecondcolor.cgColor]
         gradientLayer.locations = [0.0, 1.0]
         view.layer.addSublayer(gradientLayer)
+        //view.overrideUserInterfaceStyle = .dark
         
-    }
-    
-    func anotherGetRandomColor() -> UIColor {
-
-        let newRed   = Double(arc4random_uniform(256))/255.0
-        let newGreen = Double(arc4random_uniform(256))/255.0
-        let newBlue  = Double(arc4random_uniform(256))/255.0
-        
-        return UIColor(red: CGFloat(newRed), green: CGFloat(newGreen), blue: CGFloat(newBlue), alpha: 1.0)
     }
     
     func getRandomColor() -> UIColor {
+        
+        // generate random RGB colors
+        let randomRed   = Double(arc4random_uniform(256))/255.0
+        let randomGreen = Double(arc4random_uniform(256))/255.0
+        let randomBlue  = Double(arc4random_uniform(256))/255.0
+        print("Red:\(randomRed)\n","Green:\(randomGreen)\n","Blue:\(randomBlue)\n")
+        
+        return UIColor(red: CGFloat(randomRed), green: CGFloat(randomGreen), blue: CGFloat(randomBlue), alpha: 1.0)
+    }
+  
+    /**
+    func anotherGetRandomColor() -> UIColor {
          //Generate between 0 to 1
          let red:CGFloat = CGFloat(drand48())
          let green:CGFloat = CGFloat(drand48())
          let blue:CGFloat = CGFloat(drand48())
 
          return UIColor(red:red, green: green, blue: blue, alpha: 1.0)
-    }
+    }  **/
 }

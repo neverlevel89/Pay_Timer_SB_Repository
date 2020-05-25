@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     var hideShowUI:Bool = true
     var payString:String = ""
     
-    // MARK: Global letting
+    // MARK: Global letting/constant
     let payObjc = Pay() // Pay object
     let gradientObjc = Gradient() // Gradient object
     
@@ -91,6 +91,7 @@ class ViewController: UIViewController {
         
     }
     
+    
     private func timeString(from timeInterval: TimeInterval) -> String {
             
             let secondDouble = Double(timeInterval.truncatingRemainder(dividingBy: 3600)) // variable amount seconds payed
@@ -99,6 +100,10 @@ class ViewController: UIViewController {
             payAmountCount(seconds: secondDouble) // pay calculus method
             let second = Int(timeInterval.truncatingRemainder(dividingBy: 60)) // downcast Double to Int
             checkPointTimer(time: minutes)
+        
+        if secondDouble == 60.0{
+            gradientObjc.setupGradient(view: view)
+        }
         
             return String(format: "%.2d:%.2d:%.2d", hours, minutes, second)
         }
@@ -117,6 +122,8 @@ class ViewController: UIViewController {
             //print(payScore)
 
         }
+    
+    
     
          /*** UI elements management display method  ***/
     
