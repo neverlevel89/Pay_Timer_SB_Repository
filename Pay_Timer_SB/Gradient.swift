@@ -41,6 +41,7 @@ class Gradient {
         
         return UIColor(red: CGFloat(randomRed), green: CGFloat(randomGreen), blue: CGFloat(randomBlue), alpha: 1.0)
     }
+    
   
     /**
     func anotherGetRandomColor() -> UIColor {

@@ -8,12 +8,13 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     // MARK: Global variable
     var hideShowUI:Bool = true
     var payString:String = ""
-    
+   
     // MARK: Global letting/constant
     let payObjc = Pay() // Pay object
     let gradientObjc = Gradient() // Gradient object
@@ -100,10 +101,8 @@ class ViewController: UIViewController {
             payAmountCount(seconds: secondDouble) // pay calculus method
             let second = Int(timeInterval.truncatingRemainder(dividingBy: 60)) // downcast Double to Int
             checkPointTimer(time: minutes)
-        
-        if secondDouble == 60.0{
-            gradientObjc.setupGradient(view: view)
-        }
+            gradientTimer(second:second)
+            //print(second)
         
             return String(format: "%.2d:%.2d:%.2d", hours, minutes, second)
         }
@@ -115,7 +114,7 @@ class ViewController: UIViewController {
             let textFieldTxt = payTextField.text!
             let textFieldDouble = NSString(string: textFieldTxt).doubleValue // downcast as double Textfield value
             let payScore = payObjc.payCalculous(time:textFieldDouble, seconds:seconds)
-           // let payScore = textFieldDouble / 3600 * seconds // pay calculous
+            // let payScore = textFieldDouble / 3600 * seconds // pay calculous
             payString = String(String(format:"%.2f", payScore)) // convert Double to string for label
             pay.text = payString
             pay.lineBreakMode = .byTruncatingTail
@@ -123,7 +122,26 @@ class ViewController: UIViewController {
 
         }
     
+    // MARK: Grandiet change any minute method
+
     
+    func gradientTimer(second:Int) {
+        
+        /* default value 59 */
+        if (second == 59) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                
+                // gradient transition animation
+                UIView.animate(withDuration: 0.4) {
+                    self.view.alpha = 0.7
+                    self.gradientObjc.setupGradient(view: self.view)
+                    self.view.alpha = 1
+                }
+            }
+                  
+            //sleep(1)
+    }
+}
     
          /*** UI elements management display method  ***/
     
@@ -159,6 +177,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 }
+
     
 
 
