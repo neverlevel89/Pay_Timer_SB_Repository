@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     @IBOutlet var time: UILabel!
     @IBOutlet var pay: UILabel!
     @IBOutlet var checkPointLabel: UILabel!
-    
+
     // MARK: Button
     @IBOutlet var startButton: UIButton!
     @IBOutlet var stopButton: UIButton!
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
             payAmountCount(seconds: secondDouble) // pay calculus method
             let second = Int(timeInterval.truncatingRemainder(dividingBy: 60)) // downcast Double to Int
             checkPointTimer(time: minutes)
-            gradientTimer(second:second)
+            gradientTimer(second: second)
             //print(second)
         
             return String(format: "%.2d:%.2d:%.2d", hours, minutes, second)
@@ -166,17 +166,28 @@ class ViewController: UIViewController {
                 }
              }
     
+    func setupFontColor(fontColor: UIColor){
+        
+        time.textColor = fontColor
+        pay.textColor = fontColor
+        checkPointLabel.textColor = fontColor
+        // pay.textColor = view.backgroundColor?.isDarkColor == true ? .white : .black
+
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI(show: hideShowUI)
+        setupFontColor(fontColor: .white)
         gradientObjc.setupGradient(view: view)
-        
-        
        
         // Do any additional setup after loading the view.
     }
 }
+
+
 
     
 

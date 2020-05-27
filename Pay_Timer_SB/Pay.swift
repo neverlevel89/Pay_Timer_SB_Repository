@@ -16,7 +16,7 @@ class Pay {
        let payRealTime = time / 3600 * seconds
        return payRealTime
     }
-    
+   /**
     func checkPointTimer(time:Int)  {
         
     switch time {
@@ -29,5 +29,5 @@ class Pay {
             break
         }
         
-    }
+    }**/
 }
