@@ -30,9 +30,8 @@ class Gradient {
         view.layer.addSublayer(gradientLayer)
         gradientAnimation(gradient:gradientLayer, firstColor:gradientFirstcolor, secondColor:gradientSecondcolor, view:view)
         //makeCurve(gradient: gradientLayer)
-        //view.overrideUserInterfaceStyle = .dark
-        
-        
+        view.overrideUserInterfaceStyle = .dark
+                
     }
     
    private func getRandomColor() -> UIColor {
@@ -71,6 +70,25 @@ class Gradient {
         shapeLayer.path = circlePath.cgPath
         gradient.mask = shapeLayer
 
+    }
+    
+    func setupGradientTxt(gradient: CAGradientLayer, label: UILabel, view: UIView){
+        
+        let shapeLayer = CAShapeLayer()
+        view.addSubview(label)
+        gradient.mask = shapeLayer
+    }
+    
+    /*  Invert gradient method  */
+    
+     func setupGradientLabel(label:UILabel, view:UIView){
+        
+        label.frame = view.bounds
+        label.font = UIFont.boldSystemFont(ofSize: 100)
+        //label.textAlignment = .center
+        view.addSubview(label)
+        view.mask = label
+        
     }
     
     

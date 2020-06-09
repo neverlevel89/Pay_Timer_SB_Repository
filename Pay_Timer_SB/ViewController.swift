@@ -182,6 +182,10 @@ class ViewController: UIViewController {
         setupUI(show: hideShowUI)
         setupFontColor(fontColor: .white)
         gradientObjc.setupGradient(view: view)
+
+        //gradientObjc.setupGradientLabel(label:checkPointLabel, view:view)
+        
+        
        
         // Do any additional setup after loading the view.
     }
