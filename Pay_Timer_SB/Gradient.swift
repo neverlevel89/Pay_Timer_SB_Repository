@@ -27,10 +27,10 @@ class Gradient {
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [gradientFirstcolor.cgColor, gradientSecondcolor.cgColor]
         gradientLayer.locations = [0.0, 1.0]
-        view.layer.addSublayer(gradientLayer)
+        //view.layer.addSublayer(gradientLayer)
         gradientAnimation(gradient:gradientLayer, firstColor:gradientFirstcolor, secondColor:gradientSecondcolor, view:view)
         //makeCurve(gradient: gradientLayer)
-        view.overrideUserInterfaceStyle = .dark
+        
                 
     }
     
@@ -54,23 +54,57 @@ class Gradient {
         animation.duration = 5.0
         animation.autoreverses = true
         animation.repeatCount = Float.infinity
-
+        
         // add the animation to the gradient
         gradient.add(animation, forKey: nil)
 
         // add the gradient to the view
         view.layer.addSublayer(gradient)
+        gradient.name = "gradientLayer"
+        
+       
+
+        //gradient.transform = CATransform3DMakeRotation(CGFloat.pi / 2, 0, 0, 1)
+
+
+        
+       
+        
         
     }
     
    private func makeCurve(gradient: CAGradientLayer){
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 100, y: 100), radius: CGFloat(20), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
+    
+      /**  let circlePath = UIBezierPath(arcCenter: CGPoint(x: 100, y: 100), radius: CGFloat(20), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)  **/
+    
+   let circlePath = UIBezierPath(arcCenter: CGPoint(x: CGFloat(Double(arc4random_uniform(256))), y: CGFloat(Double(arc4random_uniform(256)))), radius: CGFloat(Double(arc4random_uniform(256))), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
 
+    
         let shapeLayer = CAShapeLayer()
-        shapeLayer.path = circlePath.cgPath
-        gradient.mask = shapeLayer
+       /* shapeLayer.path = circlePath.cgPath
+        gradient.mask = shapeLayer*/
+    
+    //fileprivate
+    //shapeLayer.removeFromSuperlayer()
+    
+    var timeLeft = 60
+
+    Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+        if timeLeft != 0 {
+            shapeLayer.path = circlePath.cgPath
+            gradient.mask = shapeLayer
+            timeLeft -= 1
+            
+        } else {
+            timer.invalidate()
+            shapeLayer.removeFromSuperlayer()
+        }
+    }
+
 
     }
+    
+    
     
     func setupGradientTxt(gradient: CAGradientLayer, label: UILabel, view: UIView){
         
@@ -84,10 +118,12 @@ class Gradient {
      func setupGradientLabel(label:UILabel, view:UIView){
         
         label.frame = view.bounds
-        label.font = UIFont.boldSystemFont(ofSize: 100)
+        //label.font = UIFont.boldSystemFont(ofSize: 100)
         //label.textAlignment = .center
         view.addSubview(label)
         view.mask = label
+        
+        
         
     }
     
@@ -116,4 +152,12 @@ extension UIColor
     }
    // pay.textColor = view.backgroundColor?.isDarkColor == true ? .white : .black
 
+}
+
+extension UIView {
+    func removeLayer(layerName: String) {
+            for item in self.layer.sublayers ?? [] where item.name == layerName {
+                    item.removeFromSuperlayer()
+            }
+        }
 }

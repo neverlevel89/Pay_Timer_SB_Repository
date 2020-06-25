@@ -6,10 +6,12 @@
 //  Copyright © 2020 Federico Pastormerlo. All rights reserved.
 //
 
+import SwiftUI // Note the second import
 import UIKit
 
 
 class ViewController: UIViewController {
+    
     
     // MARK: Global variable
     var hideShowUI:Bool = true
@@ -35,6 +37,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var startPause: UIButton! {
            didSet {
+            
             /*   startPause.setBackgroundColor(.green, for: .normal)
                startPause.setBackgroundColor(.yellow, for: .selected)*/
            }
@@ -49,6 +52,7 @@ class ViewController: UIViewController {
         payTextField.isHidden = true
         hideShowUI = false
         setupUI(show: hideShowUI)
+        
         
         if stopwatch.isPaused == true {
             
@@ -74,6 +78,7 @@ class ViewController: UIViewController {
         stopwatch.stop()
         startPause.isSelected = false
         payTextField.isHidden = false
+        
 
     }
     
@@ -136,12 +141,18 @@ class ViewController: UIViewController {
                     self.view.alpha = 0.7
                     self.gradientObjc.setupGradient(view: self.view)
                     self.view.alpha = 1
+                    self.view.removeLayer(layerName: "gradientLayer")
+                    self.gradientObjc.setupGradient(view: self.view)
+
+                    //self.view.layer.sublayers?.popLast()
                 }
             }
                   
             //sleep(1)
     }
 }
+    
+    
     
          /*** UI elements management display method  ***/
     
@@ -171,25 +182,151 @@ class ViewController: UIViewController {
         time.textColor = fontColor
         pay.textColor = fontColor
         checkPointLabel.textColor = fontColor
+        
+        
+
         // pay.textColor = view.backgroundColor?.isDarkColor == true ? .white : .black
 
     }
+    
+    
+    
+    func setupUIColorSchemes(){
+        
+    if self.traitCollection.userInterfaceStyle == .dark
+    {
+        setupFontColor(fontColor: .white)
+    }
+        if self.traitCollection.userInterfaceStyle == .light
+        {
+            setupFontColor(fontColor: .black)
+
+        }
+
+        
+    }
+    
+    
+    /**SwiftUI Handling**/
+    
+    struct PageViewController: UIViewControllerRepresentable {
+           var controllers: [UIViewController]
+
+           func makeUIViewController(context: Context) -> UIPageViewController {
+               let pageViewController = UIPageViewController(
+                   transitionStyle: .scroll,
+                   navigationOrientation: .horizontal)
+
+               return pageViewController
+           }
+
+           func updateUIViewController(_ pageViewController: UIPageViewController, context: Context) {
+               pageViewController.setViewControllers(
+                   [controllers[0]], direction: .forward, animated: true)
+           }
+       }
+       
+    func setupUILayout(){
+        
+        // dark or light UI setup
+        view.overrideUserInterfaceStyle = .unspecified
+        pay.center = view.center
+        time.center.x = view.center.x
+
+        checkPointLabel.center.x = view.center.x
+        pay.textAlignment = .center
+        time.textAlignment = .center
+        pay.center.x = view.center.x
+        time.center.x = view.center.x
+        //startButton.contentHorizontalAlignment = .center
+        //startButton.contentHorizontalAlignment = .right
+        startButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.right
+        payTextField.textAlignment = .center
+        payTextField.center.x = view.center.x
+        //startButton.center.x = view.center.x
+        
+        //1
+        NSLayoutConstraint.activate([
+          //2
+          startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+          startButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+          //3
+          startButton.widthAnchor.constraint(equalToConstant: 500),
+          startButton.heightAnchor.constraint(equalToConstant: 500)
+        ])
+        
+        
+        /*
+        view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            view.widthAnchor.constraint(equalToConstant: 80),
+            view.heightAnchor.constraint(equalToConstant: 80),
+
+            ]) */
+
+
+        
+    }
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI(show: hideShowUI)
-        setupFontColor(fontColor: .white)
+        //setupFontColor(fontColor: .white)
         gradientObjc.setupGradient(view: view)
+        //setupUIColorSchemes()
+        setupUILayout()
+      
+        
 
-        //gradientObjc.setupGradientLabel(label:checkPointLabel, view:view)
+    
+        //gradientObjc.setupGradientLabel(label:checkPointLabel, view: view)
+
+      /* let layer:CALayer = CALayer()
+        let mask:UIImage = UIImage(named: "Black-Star-Photographic-Agency")!
+        layer.contents = mask
+        layer.frame = CGRect(x: 0, y: 0, width: ((self.defaultImageView.image?.size.width)!), height: (self.defaultImageView.image?.size.height)!)
+        self.defaultImageView.layer.mask = layer
+        self.defaultImageView.layer.masksToBounds = true*/
         
         
-       
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+     super.viewDidAppear(animated)
+         // Create new Alert
+        let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+        
+        
+        dialogMessage.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.blue
+
+        // Accessing buttons tintcolor :
+        dialogMessage.view.tintColor = UIColor.white
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+         })
+        
+        //Add OK button to a dialog message
+        dialogMessage.addAction(ok)
+        // Present Alert to
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    
+    
+    
 }
+
+
+
+
 
 
 
@@ -198,3 +335,9 @@ class ViewController: UIViewController {
 
 
 
+
+struct ViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}
