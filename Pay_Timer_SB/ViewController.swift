@@ -109,6 +109,7 @@ class ViewController: UIViewController {
             gradientTimer(second: second)
             //print(second)
         
+        
             return String(format: "%.2d:%.2d:%.2d", hours, minutes, second)
         }
     
@@ -143,6 +144,21 @@ class ViewController: UIViewController {
                     self.view.alpha = 1
                     self.view.removeLayer(layerName: "gradientLayer")
                     self.gradientObjc.setupGradient(view: self.view)
+                    
+                    /*let animation:CATransition = CATransition()
+                    animation.timingFunction = CAMediaTimingFunction(name:
+                        CAMediaTimingFunctionName.easeInEaseOut)
+                    animation.type = CATransitionType.push //1.
+                    animation.duration = 0.25
+                    self.time.layer.add(animation, forKey: CATransitionType.push.rawValue)//2.*/
+                    
+                    UIView.animate(withDuration: 0.001, animations: { () -> Void in
+                        self.time.transform = .init(scaleX: 1.1, y: 1.1)
+                    }) { (finished: Bool) -> Void in
+                        UIView.animate(withDuration: 0.001, animations: { () -> Void in
+                            self.time.transform = .identity
+                        })
+                    }
 
                     //self.view.layer.sublayers?.popLast()
                 }
