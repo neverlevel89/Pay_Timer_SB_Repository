@@ -26,6 +26,7 @@
 		1D91F646249CA35400FA6E0B /* SF-Pro-Display-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D91F634249CA35400FA6E0B /* SF-Pro-Display-BlackItalic.otf */; };
 		1D91F647249CA35400FA6E0B /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D91F635249CA35400FA6E0B /* SF-Pro-Display-Medium.otf */; };
 		1D91F648249CA35400FA6E0B /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D91F636249CA35400FA6E0B /* SF-Pro-Display-Semibold.otf */; };
+		1D9D7C9024C9C977003F0538 /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9D7C8F24C9C977003F0538 /* GaugeView.swift */; };
 		1DB2D6B224630C1F00ECBB67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB2D6B124630C1F00ECBB67 /* AppDelegate.swift */; };
 		1DB2D6B424630C1F00ECBB67 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB2D6B324630C1F00ECBB67 /* SceneDelegate.swift */; };
 		1DB2D6B624630C1F00ECBB67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB2D6B524630C1F00ECBB67 /* ViewController.swift */; };
@@ -57,6 +58,7 @@
 		1D91F634249CA35400FA6E0B /* SF-Pro-Display-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-BlackItalic.otf"; sourceTree = "<group>"; };
 		1D91F635249CA35400FA6E0B /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
 		1D91F636249CA35400FA6E0B /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
+		1D9D7C8F24C9C977003F0538 /* GaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeView.swift; sourceTree = "<group>"; };
 		1DB2D6AE24630C1F00ECBB67 /* Pay_Timer_SB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pay_Timer_SB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DB2D6B124630C1F00ECBB67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DB2D6B324630C1F00ECBB67 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				1DB2D6B124630C1F00ECBB67 /* AppDelegate.swift */,
 				1DB2D6B324630C1F00ECBB67 /* SceneDelegate.swift */,
 				1DB2D6B524630C1F00ECBB67 /* ViewController.swift */,
+				1D9D7C8F24C9C977003F0538 /* GaugeView.swift */,
 				1DB51B372477CA8600AD097B /* Gradient.swift */,
 				1D73EB03247D41570016FED2 /* Animation.swift */,
 				1DB2D6C524630C4200ECBB67 /* Stopwatch.swift */,
@@ -236,6 +239,7 @@
 				1DB2D6B424630C1F00ECBB67 /* SceneDelegate.swift in Sources */,
 				1DB2D6C624630C4200ECBB67 /* Stopwatch.swift in Sources */,
 				1D73EB04247D41570016FED2 /* Animation.swift in Sources */,
+				1D9D7C9024C9C977003F0538 /* GaugeView.swift in Sources */,
 				1DB51B382477CA8600AD097B /* Gradient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

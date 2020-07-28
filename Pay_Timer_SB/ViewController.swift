@@ -6,8 +6,8 @@
 //  Copyright © 2020 Federico Pastormerlo. All rights reserved.
 //
 
-import SwiftUI // Note the second import
 import UIKit
+import SwiftUI // Note the second import
 
 
 class ViewController: UIViewController {
@@ -38,6 +38,7 @@ class ViewController: UIViewController {
     @IBOutlet var startPause: UIButton! {
            didSet {
             
+            
             /*   startPause.setBackgroundColor(.green, for: .normal)
                startPause.setBackgroundColor(.yellow, for: .selected)*/
            }
@@ -52,6 +53,7 @@ class ViewController: UIViewController {
         payTextField.isHidden = true
         hideShowUI = false
         setupUI(show: hideShowUI)
+        //setupGauge();
         
         
         if stopwatch.isPaused == true {
@@ -68,6 +70,7 @@ class ViewController: UIViewController {
             // let payLabelTxt = payString
             //pay.text = payLabelTxt
              //payTextField.text = payString
+            
 
         }
 
@@ -105,6 +108,15 @@ class ViewController: UIViewController {
             let hours = Int(timeInterval / 3600)
             payAmountCount(seconds: secondDouble) // pay calculus method
             let second = Int(timeInterval.truncatingRemainder(dividingBy: 60)) // downcast Double to Int
+        let test = GaugeView(frame: CGRect(x: 40, y: 40, width: 256, height: 256))
+        test.backgroundColor = .clear
+        view.addSubview(test)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.animate(withDuration: 1) {
+                test.value = second
+            }
+        }
             checkPointTimer(time: minutes)
             gradientTimer(second: second)
             //print(second)
@@ -153,7 +165,7 @@ class ViewController: UIViewController {
                     self.time.layer.add(animation, forKey: CATransitionType.push.rawValue)//2.*/
                     
                     UIView.animate(withDuration: 0.001, animations: { () -> Void in
-                        self.time.transform = .init(scaleX: 1.1, y: 1.1)
+                        self.time.transform = .init(scaleX: 1.12, y: 1.12)
                     }) { (finished: Bool) -> Void in
                         UIView.animate(withDuration: 0.001, animations: { () -> Void in
                             self.time.transform = .identity
@@ -167,6 +179,30 @@ class ViewController: UIViewController {
             //sleep(1)
     }
 }
+    func setupGauge(){
+        
+        let test = GaugeView(frame: CGRect(x: 40, y: 40, width: 256, height: 256))
+        test.backgroundColor = .clear
+        view.addSubview(test)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.animate(withDuration: 1) {
+                test.value = 33
+            }
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            UIView.animate(withDuration: 1) {
+                test.value = 66
+            }
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            UIView.animate(withDuration: 1) {
+                test.value = 0
+            }
+        }
+    }
     
     
     
@@ -240,6 +276,8 @@ class ViewController: UIViewController {
                pageViewController.setViewControllers(
                    [controllers[0]], direction: .forward, animated: true)
            }
+        
+        
        }
        
     func setupUILayout(){
@@ -296,7 +334,10 @@ class ViewController: UIViewController {
         gradientObjc.setupGradient(view: view)
         //setupUIColorSchemes()
         setupUILayout()
+        
+        
       
+       
         
 
     
@@ -312,6 +353,9 @@ class ViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
+  
+    
     
     override func viewDidAppear(_ animated: Bool) {
      super.viewDidAppear(animated)
